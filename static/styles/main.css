@@ -1,0 +1,10 @@
+h1 {
+  color: red;
+}
+
+.logo {
+  width: 70px; /* Set the desired width in pixels */
+  height: 70px; /* Set the desired height in pixels */
+  border-radius: 50%; /* Make the element circular by setting the border-radius to 50% */
+  object-fit: cover; /* Ensure the entire image is visible within the circular container */
+}
