@@ -7,4 +7,6 @@ urlpatterns = [
     path('register/',views.registerUser,name='register'),
     path('',views.profiles,name='profiles'),
     path('profile/<str:pk>/',views.userProfile,name='profile'),
+    path('user-account',views.userAccount,name='user-account'),
+
 ]

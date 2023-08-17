@@ -14,10 +14,16 @@ img {
   width: 100%;
 }
 
-.tag > i.im {
+/* .tag > i.im {
   font-size: 1.5rem;
   margin-right: 0.5rem;
+} */
+.tag {
+  display: inline-block;
+  margin-right: 3px; /* Adjust this value as needed */
 }
+
+
 
 .content-box {
   width: 95%;
@@ -71,8 +77,9 @@ img {
 }
 
 .project--thumbnail {
-  height: 250px;
-  object-fit: cover;
+  width: 100%; /* Set the width of the image to 100% of the container */
+  height: 100%; /* Set the height of the image to 100% of the container */
+  object-fit: contain;
 }
 
 @media screen and (max-width: 800px) {
@@ -455,7 +462,7 @@ img {
 
 .singleProject__preview {
   height: 50vh;
-  object-fit: cover;
+  object-fit: contain;
   object-position: top center;
   margin-bottom: 3rem;
   border-radius: 0.7rem;
@@ -519,9 +526,9 @@ img {
 /*========== Projects ==========*/
 
 .project__thumbnail {
-  height: 25rem;
-  object-fit: cover;
-  object-position: top center;
+  width: 100%; /* Set the width of the image to 100% of the container */
+  height: 100%; /* Set the height of the image to 100% of the container */
+  object-fit: contain;
 }
 
 .project__title {
@@ -604,7 +611,7 @@ img {
 }
 
 .settings__table tr > td {
-  padding: 2rem 0;
+  padding: 1.5rem 0;
 }
 
 .settings__table tr:not(:last-child) td {
@@ -617,8 +624,8 @@ img {
 }
 
 .settings__thumbnail img {
-  padding-right: 3rem;
-  height: 15rem;
+  width: 100%; /* Set the width of the image to 100% of the container */
+  height: 100%; /* Set the height of the image to 100% of the container */
   object-fit: contain;
 }
 
