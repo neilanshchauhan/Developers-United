@@ -95,6 +95,7 @@ def editAccount(request):
 
 @login_required(login_url='login')
 def createSkill(request):
+    page = 'create-skill'
     profile = request.user.profile
     form = SkillForm()
 
@@ -104,13 +105,15 @@ def createSkill(request):
             skill = form.save(commit=False)
             skill.owner = profile
             skill.save()
+            messages.success(request,"Skill has been added!")
             return redirect("user-account")
 
-    context = {'form':form}
+    context = {'form':form,'page':page}
     return render(request, 'users/skill_form.html',context)
 
 @login_required(login_url='login')
 def updateSkill(request,pk):
+    page = 'update-skill'
     profile = request.user.profile
     skill = profile.skill_set.get(id=pk)
     form = SkillForm(instance=skill)
@@ -119,7 +122,8 @@ def updateSkill(request,pk):
         form = SkillForm(request.POST,instance=skill)
         if form.is_valid():
             form.save()
+            messages.success(request,"Skill has been updated!")
             return redirect("user-account")
 
-    context = {'form':form}
+    context = {'form':form, 'page':page}
     return render(request, 'users/skill_form.html',context)
