@@ -9,5 +9,6 @@ urlpatterns = [
     path('profile/<str:pk>/',views.userProfile,name='profile'),
     path('user-account',views.userAccount,name='user-account'),
     path('edit-account',views.editAccount,name='edit-account'),
+    path('create-skill',views.createSkill,name='create-skill'),
 
 ]
