@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm
-from .models import Profile,Skill
+from .models import Profile
 from django.db.models import Q
+from .utils import searchProfiles
 
 # Create your views here.
 def loginUser(request):
@@ -61,13 +62,7 @@ def registerUser(request):
 
 
 def profiles(request):
-    search_query = ''
-
-    if request.GET.get('search_query'):
-        search_query = request.GET.get('search_query')
-    
-    profiles = Profile.objects.filter(Q(name__icontains=search_query) | Q(intro__icontains=search_query) )
-
+    profiles, search_query = searchProfiles(request)
     context = {'profiles': profiles,'search_query':search_query}
     return render(request,'users/profiles.html',context)
 
