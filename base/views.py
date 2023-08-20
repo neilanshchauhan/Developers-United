@@ -5,12 +5,26 @@ from .forms import ProjectForm
 from django.db.models import Q
 from .models import Projects,Tag
 from .utils import searchProjects
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # Create your views here.
 
 def projects(request):
     projects,search_query = searchProjects(request)
-    context = {'projects':projects,'search_query':search_query}
+
+    page = request.GET.get('page')
+    results = 3
+    paginator = Paginator(projects,results)
+
+    try:
+        projects = paginator.page(page)
+    except PageNotAnInteger:
+        page = 1
+        projects = paginator.page(page)
+    except EmptyPage:
+        page = paginator.num_pages
+        projects = paginator.page(page)
+    context = {'projects':projects,'search_query':search_query,'paginator':paginator}
     return render(request, 'base/projects.html',context)
 
 def project(request,pk):
