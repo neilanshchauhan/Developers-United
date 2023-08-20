@@ -2,12 +2,15 @@ from django.shortcuts import render,redirect
 from .models import Projects
 from django.contrib.auth.decorators import login_required
 from .forms import ProjectForm
+from django.db.models import Q
+from .models import Projects,Tag
+from .utils import searchProjects
 
 # Create your views here.
 
 def projects(request):
-    projects = Projects.objects.all()
-    context = {'projects':projects}
+    projects,search_query = searchProjects(request)
+    context = {'projects':projects,'search_query':search_query}
     return render(request, 'base/projects.html',context)
 
 def project(request,pk):
@@ -54,3 +57,5 @@ def deleteProject(request,pk):
         return redirect("projects")
     context = {'object':project}
     return render(request,'delete_template.html',context)
+
+
