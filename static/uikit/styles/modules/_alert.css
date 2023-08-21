@@ -1,13 +1,16 @@
 .alert {
-  display: inline-flex;
+  display: flex;
   gap: 3rem;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 1.5rem 2.5rem;
-  border-radius: 3px;
+  border-radius: 15px;
   border: 1px solid var(--color-white-light);
   margin-bottom: 1rem;
-  margin-right: 1rem;
+  margin-left: 40%;
+  z-index: 100;
+  position: absolute;
+  opacity: 0.9;
 }
 
 .alert,
@@ -40,5 +43,5 @@
 }
 
 .alert > .alert__close:hover {
-  opacity: 0.85;
+  opacity: 0.5;
 }
