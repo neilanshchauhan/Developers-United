@@ -151,3 +151,10 @@ def inbox(request):
     unread_msg = msg.filter(is_read=False).count()
     context = {'msg':msg,'unread_msg':unread_msg}
     return render(request,"users/inbox.html",context)
+
+@login_required(login_url='login')
+def viewMessage(request,pk):
+    profile = request.user.profile
+    msg = profile.messages.get(id=pk)
+    context = {'msg':msg}
+    return render(request, "users/message.html",context)
