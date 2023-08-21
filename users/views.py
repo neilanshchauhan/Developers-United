@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm
-from .models import Profile
+from .models import Profile, Message
 from django.db.models import Q
 from .utils import searchProfiles, paginateProfiles
 
@@ -132,6 +132,7 @@ def updateSkill(request,pk):
     context = {'form':form, 'page':page}
     return render(request, 'users/skill_form.html',context)
 
+@login_required(login_url='login')
 def deleteSkill(request, pk):
     profile = request.user.profile
     skill = profile.skill_set.get(id=pk)
@@ -142,3 +143,11 @@ def deleteSkill(request, pk):
         return redirect('user-account')
     context = {'object':skill}
     return render(request,'delete_template.html',context)
+
+@login_required(login_url='login')
+def inbox(request):
+    profile = request.user.profile
+    msg = profile.messages.all()
+    unread_msg = msg.filter(is_read=False).count()
+    context = {'msg':msg,'unread_msg':unread_msg}
+    return render(request,"users/inbox.html",context)
