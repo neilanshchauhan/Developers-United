@@ -20,6 +20,18 @@ class Projects(models.Model):
     
     class Meta:
         ordering = ['created']
+    
+    @property
+    def getVotes(self):
+        reviews = self.review_set.all()
+        upVotes = reviews.filter(value='up').count()
+        totalVotes = reviews.count()
+        
+        ratio = (upVotes/totalVotes)*100
+        self.vote_total = totalVotes
+        self.vote_ratio = ratio
+        
+        self.save()
 
 class Review(models.Model):
     VOTE_TYPE = (

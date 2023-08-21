@@ -28,8 +28,11 @@ def project(request,pk):
         review.project = projectObj
         review.save()
         messages.success(request, "Review has been submitted")
+        
         # Updating Project Vote Count
+        projectObj.getVotes
 
+        return redirect('project', pk=projectObj.id)
     context = {'project':projectObj,'form':form}
     return render(request,'base/single-project.html',context)
 
