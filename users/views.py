@@ -27,7 +27,7 @@ def loginUser(request):
 
         if user is not None:
             login(request, user)
-            return redirect('profiles')
+            return redirect(request.GET['next'] if 'next' in request.GET else 'user-account')
         else:
             messages.error(request,'Username OR Password is incorrect')
 

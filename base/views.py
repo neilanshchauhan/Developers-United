@@ -18,6 +18,7 @@ def projects(request):
     return render(request, 'base/projects.html',context)
 
 def project(request,pk):
+    profile = request.user.profile
     projectObj = Projects.objects.get(id=pk)
     form = ReviewForm()
 
@@ -33,7 +34,7 @@ def project(request,pk):
         projectObj.getVotes
 
         return redirect('project', pk=projectObj.id)
-    context = {'project':projectObj,'form':form}
+    context = {'project':projectObj,'form':form,'profile':profile}
     return render(request,'base/single-project.html',context)
 
 @login_required(login_url='login')
