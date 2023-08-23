@@ -1,7 +1,8 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import ProjectSerializer
-from base.models import Projects
+from base.models import Projects, Tag
+from users.models import Profile
 
 @api_view(['GET'])
 def getRoutes(request):
