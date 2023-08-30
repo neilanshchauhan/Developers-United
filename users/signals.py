@@ -26,8 +26,11 @@ def updateProfile(sender, instance, created, **kwargs):
         user.save()
 
 def profileDeleted(sender, instance, **kwargs):
-    user = instance.user
-    user.delete()
-
+    try:
+        user = instance.user
+        user.delete()
+    except:
+        pass
+    
 post_save.connect(createProfile, sender=User)
 post_delete.connect(profileDeleted, sender=Profile)
