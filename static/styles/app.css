@@ -1,9 +1,14 @@
 :root {
-  --color-sub: #2d2d39;
+  --color-sub: #4499c9;
+}
+
+.img_logo{
+  height: 1000px;
+
 }
 
 .btn--sub {
-  background-color: var(--color-sub-light);
+  background-color: #332c63;
 }
 
 .card {
